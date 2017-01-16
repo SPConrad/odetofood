@@ -1,20 +1,38 @@
 ﻿@model OdeToFood.ViewModels.HomePageViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Ode To Food</title>
-</head>
-<body>
-    <h1>Welcome!</h1>
-    <h3>@Model.CurrentMessage</h3>
-    <table>
+@{ 
+    ViewBag.Title = "Home";
+}
+
+
+<environment names="Development">
+    
+</environment>
+<environment names="Production">
+
+</environment>
+
+<h1>Welcome!</h1>
+<table>
         @foreach (var restaurant in Model.Restaurants)
         {
             <tr>
-                <td>@restaurant.Id</td>
                 <td>@restaurant.Name</td>
+                <td>
+                    <!--<a href="/home/details/@restaurant.Id">Details</a>-->
+                    <!--First string is text to display, second string is action to take, third object is a new anonymously typed object that passes in the id for that restaurant-->
+                    <!--Html.ActionLink("View Restaurant Details", "Details", new { id = restaurant.Id });-->
+                    <a asp-action="Details" asp-route-id="@restaurant.Id">Details</a>
+                    <a asp-action="Edit" asp-route-id="@restaurant.Id">Edit</a>
+                </td>
             </tr>
         }
-    </table>
-</body>
-</html>
+</table>
+
+<!--Go to the Creat action on the Home controller. Do not need to specify Home controller since we already inside of it-->
+<a asp-controller="Home" asp-action="Create">Create</a>
+
+
+@section footer{
+    <h3>@Model.CurrentMessage</h3>
+}

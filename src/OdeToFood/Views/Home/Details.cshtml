@@ -1,0 +1,29 @@
+﻿@using OdeToFood.Controllers
+@model OdeToFood.Entities.Restaurant
+
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@if (Model == null)
+{
+    <h1>Could not find model</h1>
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    Id: @Model.Id
+</div>
+
+<div>
+    Cuisine: @Model.Cuisine
+</div>
+
+<div>... details ...</div>
+
+<br /><br />
+<div>
+    @Html.ActionLink("Home", nameof(HomeController.Index))
+</div>
